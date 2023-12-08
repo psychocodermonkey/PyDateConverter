@@ -1,7 +1,7 @@
 '''
- Program: Date Converter GUI (Class for main wondow)
+ Program: Date converter functions
     Name: Andrew Dixon             File: dateCnvExceptions.py
-    Date: 5 Feb 2019
+    Date: 25 Oct 2018
    Notes:
 
     PyDateConverter - Handy date information and conversion to common formats.
@@ -19,9 +19,8 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-    ........1.........2.........3.........4.........5.........6.........7.........8.........9.........0.........1.........2.........3..
+........1.........2.........3.........4.........5.........6.........7.........8.........9.........0.........1.........2.........3..
 '''
-
 #class Error(Exception):
 #  "Base class for other exceptions"
 #  pass
