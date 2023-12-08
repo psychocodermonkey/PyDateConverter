@@ -136,7 +136,7 @@ def validSep(data: str) -> bool:
   ''' Determine if matching valid separators were used '''
   if any((s in SEPARATORS) for s in data):
     separator = (set(SEPARATORS) & set(data)).pop()
-    if data.count(separator) == 2: return True
+    return data.count(separator) == 2
 
   else:
     return True
@@ -146,4 +146,5 @@ def validSep(data: str) -> bool:
 
 # If the #{filename}.py is run (instead of imported as a module),
 # call the main() function:
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+  main()

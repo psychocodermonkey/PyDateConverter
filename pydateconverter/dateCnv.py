@@ -6,10 +6,11 @@
 #   Notes: For date converson to work date input must use valid separators.
 #
 
-from datetime import date, time, datetime, timedelta
-from dateCnvExceptions import *
+from datetime import datetime, timedelta
+from pydateconverter import dateCnvExceptions as excp
 
-raiseExceptions = True
+
+_RAISEEXCEPTIONS = True
 
 # Main -------------------------------------------------------------------------------------------------------
 def main():
@@ -17,8 +18,8 @@ def main():
   Run this as a standalone program
   """
   # Since we're going to handle reporting errors within here don't raise any exceptions
-  global raiseExceptions
-  raiseExceptions = False
+  global _RAISEEXCEPTIONS
+  _RAISEEXCEPTIONS = False
 
   # Make this loop forever. Leave by putting a q/Q on the input line.
   while True:
@@ -62,8 +63,8 @@ def dateFormatMask(strFormat):
     fmtString = outFormat[strFormat.upper()]
 
   except KeyError:
-    if raiseExceptions:
-      raise FormatMaskNotFound
+    if _RAISEEXCEPTIONS:
+      raise excp.FormatMaskNotFound
       #raise Exception(">> ERROR: Format mask for %s not found." % strFormat)
       return None
     else:
@@ -99,8 +100,8 @@ def dateFormatSeparatedMask(strFormat, separator):
     fmtString = fmtString.replace("?", separator)
 
   except KeyError:
-    if raiseExceptions:
-      raise FormatMaskNotFound
+    if _RAISEEXCEPTIONS:
+      raise excp.FormatMaskNotFound
       return None
     else:
       print(">> ERROR: Format mask for %s not found." % strFormat)
@@ -165,8 +166,8 @@ def convertDate(inDate, inFmt, otFmt, otMatch=True):
 
     # If something went wrong, it is either the information or the format asked for.
     except ValueError:
-      if raiseExceptions:
-        raise InputDateOrFormatMaskInvalid
+      if _RAISEEXCEPTIONS:
+        raise excp.InputDateOrFormatMaskInvalid
         return None
       else:
         print(">> ERROR: Input date or format mask is invalid. Date: %s - Format/Mask: %s" % (inDate, inFmt))
@@ -179,8 +180,8 @@ def convertDate(inDate, inFmt, otFmt, otMatch=True):
       dtDate += dtDelta
 
     except OverflowError:
-      if raiseExceptions:
-        raise DateOutOfRange
+      if _RAISEEXCEPTIONS:
+        raise excp.DateOutOfRange
         return None
       else:
         print(">> ERROR: Date is out of range: %s" % (inDate))
@@ -193,8 +194,8 @@ def convertDate(inDate, inFmt, otFmt, otMatch=True):
 
     # If there was an issue, then there was a problem with the format.
     except ValueError:
-      if raiseExceptions:
-        raise OutputFormatInvalid
+      if _RAISEEXCEPTIONS:
+        raise excp.OutputFormatInvalid
         return None
       else:
         print(">> ERROR: Output format is invalid. - Format/Mask: %s" % (otFmt))
@@ -212,4 +213,5 @@ def convertDate(inDate, inFmt, otFmt, otMatch=True):
 
 
 # If the dateCnv.py is run (instead of imported as a module), call the main() function:
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+  main()
