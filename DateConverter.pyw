@@ -25,8 +25,8 @@
 
 from tkinter import Frame, Tk, Label, Button, Text, StringVar, messagebox,\
    E, W, SE, Entry, END, ttk
-from dateCnv import convertDate, validFormats
-import dateCnvExceptions as ex
+from pydateconverter import dateCnv as cnv
+from pydateconverter import dateCnvExceptions as ex
 
 
 def main():
@@ -57,7 +57,7 @@ class MainWindow:
     self.inDate.grid(row=0, column=1, sticky=E)
 
     # Get the list of valid formats from the date converter
-    self.dteFormats = validFormats()
+    self.dteFormats = cnv.validFormats()
 
     # Setup the combo boxes for the formats using the list of valid formats.
     self.inFmt = StringVar()
@@ -96,7 +96,7 @@ class MainWindow:
 
     # Try the date conversion with the data provided.
     try:
-      cnvDate = convertDate(txtInDate, txtInFmt, txtOtFmt)
+      cnvDate = cnv.convertDate(txtInDate, txtInFmt, txtOtFmt)
       if cnvDate == 0:
         cnvDate = ''
 
