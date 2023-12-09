@@ -1,13 +1,32 @@
 #!/usr/local/bin/python3
-#
-# Program: Date converter functions
-#    Name: Andrew Dixon             File: dateCnv
-#    Date: 25 Oct 2018
-#   Notes: For date converson to work date input must use valid separators.
-#
+'''
+ Program: Date converter functions
+    Name: Andrew Dixon             File: dateCnv
+    Date: 25 Oct 2018
+   Notes: For date converson to work date input must use valid separators.
 
-from datetime import date, time, datetime, timedelta
-from dateCnvExceptions import *
+    PyDateConverter - Handy date information and conversion to common formats.
+    Copyright (C) 2023  Andrew Dixon
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    ........1.........2.........3.........4.........5.........6.........7.........8.........9.........0.........1.........2.........3..
+'''
+
+from datetime import datetime, timedelta
+import dateCnvExceptions as excp
+#from dateCnvExceptions import *
+
 
 raiseExceptions = True
 
@@ -63,7 +82,7 @@ def dateFormatMask(strFormat):
 
   except KeyError:
     if raiseExceptions:
-      raise FormatMaskNotFound
+      raise excp.FormatMaskNotFound
       #raise Exception(">> ERROR: Format mask for %s not found." % strFormat)
       return None
     else:
@@ -100,7 +119,7 @@ def dateFormatSeparatedMask(strFormat, separator):
 
   except KeyError:
     if raiseExceptions:
-      raise FormatMaskNotFound
+      raise excp.FormatMaskNotFound
       return None
     else:
       print(">> ERROR: Format mask for %s not found." % strFormat)
@@ -166,7 +185,7 @@ def convertDate(inDate, inFmt, otFmt, otMatch=True):
     # If something went wrong, it is either the information or the format asked for.
     except ValueError:
       if raiseExceptions:
-        raise InputDateOrFormatMaskInvalid
+        raise excp.InputDateOrFormatMaskInvalid
         return None
       else:
         print(">> ERROR: Input date or format mask is invalid. Date: %s - Format/Mask: %s" % (inDate, inFmt))
@@ -180,7 +199,7 @@ def convertDate(inDate, inFmt, otFmt, otMatch=True):
 
     except OverflowError:
       if raiseExceptions:
-        raise DateOutOfRange
+        raise excp.DateOutOfRange
         return None
       else:
         print(">> ERROR: Date is out of range: %s" % (inDate))
@@ -194,7 +213,7 @@ def convertDate(inDate, inFmt, otFmt, otMatch=True):
     # If there was an issue, then there was a problem with the format.
     except ValueError:
       if raiseExceptions:
-        raise OutputFormatInvalid
+        raise excp.OutputFormatInvalid
         return None
       else:
         print(">> ERROR: Output format is invalid. - Format/Mask: %s" % (otFmt))
@@ -212,4 +231,5 @@ def convertDate(inDate, inFmt, otFmt, otMatch=True):
 
 
 # If the dateCnv.py is run (instead of imported as a module), call the main() function:
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+  main()
