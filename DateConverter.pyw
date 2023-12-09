@@ -53,7 +53,8 @@ class MainWindow:
       .grid(row=2, column=0, sticky=E)
 
     # Setup the text boxes to for the input
-    self.inDate = Entry(root_frame, width=12, bg='white', fg='black')
+    # self.inDate = Entry(root_frame, width=12, bg='white', fg='black')
+    self.inDate = Entry(root_frame, width=12)
     self.inDate.grid(row=0, column=1, sticky=E)
 
     # Get the list of valid formats from the date converter
