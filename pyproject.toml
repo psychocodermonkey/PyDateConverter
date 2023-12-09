@@ -1,0 +1,29 @@
+[build-system]
+requires = [
+  "setuptools >= 65.6.0",
+  "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PyDateConverter"
+version = "2023.12.08"
+dependencies = [
+  "PyQt6==6.6.0",
+  "PyQt6-Qt6>=6.6.0",
+  "PyQt6-sip>=13.6.0"
+]
+requires-python = ">= 3.11"
+authors = [
+  {name = "Andrew Dixon", email = "PsychoCoderMonkey@gmail.com"}
+]
+maintainers = [
+  {name = "Andrew Dixon", email = "PsychoCoderMonkey@gmail.com"}
+]
+description = "Convert dates betwen standard formats."
+readme = {file = "README.md", content-type = "text/markdown"}
+license = { file = "LICENSE" }
+keywords = ["email", "template", "generator"]
+
+[project.gui-scripts]
+EmStencil-gui = "PyDateConverter:main"
