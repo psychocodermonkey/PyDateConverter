@@ -23,9 +23,8 @@
 ........1.........2.........3.........4.........5.........6.........7.........8.........9.........0.........1.........2.........3..
 '''
 
-
 from datetime import datetime, timedelta
-from pydateconverter import dateCnvExceptions as excp
+from pydateconverter import dateCnvExceptions as ex
 
 
 _RAISEEXCEPTIONS = True
@@ -82,7 +81,7 @@ def dateFormatMask(strFormat):
 
   except KeyError:
     if _RAISEEXCEPTIONS:
-      raise excp.FormatMaskNotFound
+      raise ex.FormatMaskNotFound
       #raise Exception(">> ERROR: Format mask for %s not found." % strFormat)
       return None
     else:
@@ -119,7 +118,7 @@ def dateFormatSeparatedMask(strFormat, separator):
 
   except KeyError:
     if _RAISEEXCEPTIONS:
-      raise excp.FormatMaskNotFound
+      raise ex.FormatMaskNotFound
       return None
     else:
       print(">> ERROR: Format mask for %s not found." % strFormat)
@@ -185,7 +184,7 @@ def convertDate(inDate, inFmt, otFmt, otMatch=True):
     # If something went wrong, it is either the information or the format asked for.
     except ValueError:
       if _RAISEEXCEPTIONS:
-        raise excp.InputDateOrFormatMaskInvalid
+        raise ex.InputDateOrFormatMaskInvalid
         return None
       else:
         print(">> ERROR: Input date or format mask is invalid. Date: %s - Format/Mask: %s" % (inDate, inFmt))
@@ -199,7 +198,7 @@ def convertDate(inDate, inFmt, otFmt, otMatch=True):
 
     except OverflowError:
       if _RAISEEXCEPTIONS:
-        raise excp.DateOutOfRange
+        raise ex.DateOutOfRange
         return None
       else:
         print(">> ERROR: Date is out of range: %s" % (inDate))
@@ -213,7 +212,7 @@ def convertDate(inDate, inFmt, otFmt, otMatch=True):
     # If there was an issue, then there was a problem with the format.
     except ValueError:
       if _RAISEEXCEPTIONS:
-        raise excp.OutputFormatInvalid
+        raise ex.OutputFormatInvalid
         return None
       else:
         print(">> ERROR: Output format is invalid. - Format/Mask: %s" % (otFmt))
